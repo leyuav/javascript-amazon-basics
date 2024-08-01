@@ -1,39 +1,3 @@
-const products = [
-  {
-    id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
-    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-    rating: {
-      stars: 4.5,
-      count: 87,
-    },
-    priceCents: 1090,
-    keywords: ['socks', 'sports', 'apparel'],
-  },
-  {
-    id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
-    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-    rating: {
-      stars: 4.5,
-      count: 87,
-    },
-    priceCents: 1090,
-    keywords: ['socks', 'sports', 'apparel'],
-  },
-  {
-    id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
-    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-    rating: {
-      stars: 4.5,
-      count: 87,
-    },
-    priceCents: 1090,
-    keywords: ['socks', 'sports', 'apparel'],
-  },
-];
-
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -78,9 +42,21 @@ products.forEach((product) => {
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary">Add to Cart</button>
+      <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name='${
+        product.name
+      }'>Add to Cart</button>
     </div>
         `;
 });
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+document.querySelector('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productName = button.dataset.productName;
+    cart.push({
+      productName: productName,
+      quantity: 1,
+    });
+  });
+});
