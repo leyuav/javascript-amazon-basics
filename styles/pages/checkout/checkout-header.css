@@ -2,7 +2,7 @@
   height: 60px;
   padding-left: 30px;
   padding-right: 30px;
-  background-color: white;
+  background-color: rgb(19, 25, 33);
 
   display: flex;
   justify-content: center;
@@ -29,6 +29,11 @@
 .amazon-logo {
   width: 100px;
   margin-top: 12px;
+  padding: 8px;
+}
+
+.amazon-logo:hover {
+  border: 1px solid #404040;
 }
 
 .amazon-mobile-logo {
@@ -64,10 +69,14 @@
 }
 
 .return-to-home-link {
-  color: rgb(0, 113, 133);
+  color: rgb(203, 106, 21);
   font-size: 23px;
   text-decoration: none;
   cursor: pointer;
+}
+
+.return-to-home-link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 1000px) {
