@@ -2,6 +2,18 @@ import { cart, removeFromCart } from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
+window.onload = function () {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-return-to-home').innerHTML = `${cartQuantity} items`;
+};
+
+// document.querySelector('.js-return-to-home').innerHTML = 5;
+
 let cartSummaryHTML = '';
 
 cart.forEach((cartItem) => {
