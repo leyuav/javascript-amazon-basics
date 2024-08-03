@@ -37,7 +37,11 @@ cart.forEach((cartItem) => {
           <div class="product-price">$${formatCurrency(matchingProduct.priceCents)}</div>
           <div class="product-quantity">
             <span> Quantity: <span class="quantity-label">${cartItem.quantity}</span> </span>
-            <span class="update-quantity-link link-primary"> Update </span>
+            <span class="update-quantity-link link-primary js-update-link" data-product-id='${
+              matchingProduct.id
+            }'> Update </span>
+            <input class='quantity-input' />
+            <span class='save-quantity-link link-primary'>Save</span>
             <span class="delete-quantity-link link-primary js-delete-link" data-product-id='${
               matchingProduct.id
             }'> Delete </span>
@@ -91,5 +95,12 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     container.remove();
     calculateCartQuantity();
     checkoutReload();
+  });
+});
+
+document.querySelectorAll('.js-update-link').forEach((link) => {
+  link.addEventListener('click', () => {
+    const productId = link.dataset.productId;
+    console.log(productId);
   });
 });
