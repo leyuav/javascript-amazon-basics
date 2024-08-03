@@ -2,7 +2,11 @@ import { cart, removeFromCart } from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
-window.onload = function () {
+window.addEventListener('load', () => {
+  updateCartQuantity();
+});
+
+function updateCartQuantity() {
   let cartQuantity = 0;
 
   cart.forEach((cartItem) => {
@@ -10,7 +14,7 @@ window.onload = function () {
   });
 
   document.querySelector('.js-return-to-home').innerHTML = `${cartQuantity} items`;
-};
+}
 
 // document.querySelector('.js-return-to-home').innerHTML = 5;
 
@@ -60,7 +64,7 @@ cart.forEach((cartItem) => {
             </div>
           </div>
           <div class="delivery-option">
-            <input type="radio" class="delivery-option-input" name="delivery-option-${
+            <input checked type="radio" class="delivery-option-input" name="delivery-option-${
               matchingProduct.id
             }" />
             <div>
@@ -91,5 +95,6 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     removeFromCart(productId);
     const container = document.querySelector(`.js-cart-item-container-${productId}`);
     container.remove();
+    updateCartQuantity();
   });
 });
