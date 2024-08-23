@@ -10,16 +10,7 @@ import { formatCurrency } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
-
-window.addEventListener('load', () => {
-  checkoutReload();
-});
-
-function checkoutReload() {
-  return (document.querySelector(
-    '.js-return-to-home',
-  ).innerHTML = `${calculateCartQuantity()} items`);
-}
+import { renderCheckoutHeader } from './checkoutHeader.js';
 
 export function renderOrderSummary() {
   let cartSummaryHTML = '';
@@ -116,11 +107,11 @@ export function renderOrderSummary() {
       const productId = link.dataset.productId;
       removeFromCart(productId);
 
-      renderOrderSummary();
-
       calculateCartQuantity();
-      checkoutReload();
+
+      renderOrderSummary();
       renderPaymentSummary();
+      renderCheckoutHeader();
     });
   });
 
@@ -154,8 +145,9 @@ export function renderOrderSummary() {
       quantityLabel.innerHTML = newQuantity;
 
       calculateCartQuantity();
-      checkoutReload();
+
       renderPaymentSummary();
+      renderCheckoutHeader();
     });
   });
 
@@ -163,6 +155,7 @@ export function renderOrderSummary() {
     element.addEventListener('click', () => {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
+
       renderOrderSummary();
       renderPaymentSummary();
     });
